@@ -1,0 +1,26 @@
+/* Write your CSS here */
+.summary-card {
+  margin-left: auto;
+  margin-bottom:25px;
+}
+.order-total {
+  font-size: 21px;
+  font-weight: 900;
+  font-family: 'Roboto';
+}
+.checkout-button {
+  background-color: #0b69ff;
+  color: white;
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 7px 2px;
+}
+.items-cart {
+  margin-bottom: 17px;
+}
+.order-info {
+  margin-bottom: 1px;
+  font-size:18px;
+  font-weight:400;
+}
