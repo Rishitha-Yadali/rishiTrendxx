@@ -44,9 +44,9 @@
   border: none;
   outline: none;
   font-size: 16px;
-  font-weight:500;
-  font-family:"Roboto";
+  font-weight: 500;
+  font-family: 'Roboto';
 }
-.remove-container{
+.remove-container {
   margin-left: auto;
 }

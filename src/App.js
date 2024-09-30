@@ -67,20 +67,39 @@ class App extends Component {
     })
   }
 
-  decrementCartItemQuantity = itemId => {
+  /*decrementCartItemQuantity = itemId => {
     const {cartList} = this.state
-    if (cartList[0].quantity > 1) {
-      this.setState({
+    cartList.map(eachQuantity=> {
+      if(eachQuantity.quantity>1){
+      return this.setState({
         cartList: cartList.map(eachItem => {
           if (eachItem.id === itemId) {
             return {...eachItem, quantity: eachItem.quantity - 1}
           }
           return eachItem
         }),
-      })
-    } else {
-      this.removeCartItem(itemId)
+      })}
+      else {
+       return this.removeCartItem(itemId)
     }
+    }) 
+  }*/
+  decrementCartItemQuantity = itemId => {
+    const {cartList} = this.state
+    const updatedCartList = cartList
+      .map(eachCartItem => {
+        if (eachCartItem.id === itemId) {
+          if (eachCartItem.quantity > 1) {
+            return {...eachCartItem, quantity: eachCartItem.quantity - 1}
+          } else {
+            this.removeCartItem(itemId)
+            return null
+          }
+        }
+        return eachCartItem
+      })
+      .filter(item => item !== null)
+    this.setState({cartList: updatedCartList})
   }
 
   removeAllCartItems = () => {

@@ -1,7 +1,7 @@
 /* Write your CSS here */
 .summary-card {
   margin-left: auto;
-  margin-bottom:25px;
+  margin-bottom: 25px;
 }
 .order-total {
   font-size: 21px;
@@ -21,6 +21,6 @@
 }
 .order-info {
   margin-bottom: 1px;
-  font-size:18px;
-  font-weight:400;
+  font-size: 18px;
+  font-weight: 400;
 }
