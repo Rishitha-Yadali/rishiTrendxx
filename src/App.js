@@ -24,21 +24,19 @@ class App extends Component {
     const addIndex = cartList.find(eachItem => {
       if (eachItem.id === product.id) {
         return true
-      } else {
-        return false
       }
+      return false
     })
     if (addIndex === undefined) {
-      this.setState(prevState => {
-        return {
-          cartList: [...prevState.cartList, product],
-        }
-      })
+      this.setState(prevState => ({
+        cartList: [...prevState.cartList, product],
+      }))
     } else {
       this.setState({
-        cartList: cartList.map(eachItem => {
-          return {...eachItem, quantity: eachItem.quantity + product.quantity}
-        }),
+        cartList: cartList.map(eachItem => ({
+          ...eachItem,
+          quantity: eachItem.quantity + product.quantity,
+        })),
       })
     }
   }
@@ -48,43 +46,52 @@ class App extends Component {
     const itemIndex = cartList.findIndex(carttItem => {
       if (carttItem.id === itemId) {
         return true
-      } else {
-        return false
       }
+      return false
     })
     cartList.splice(itemIndex, 1)
     this.setState({
       cartList: [...cartList],
     })
   }
+
   incrementCartItemQuantity = itemId => {
     const {cartList} = this.state
     this.setState({
       cartList: cartList.map(eachItem => {
-        return {...eachItem, quantity: eachItem.quantity + 1}
+        if (eachItem.id === itemId) {
+          return {...eachItem, quantity: eachItem.quantity + 1}
+        }
+        return eachItem
       }),
     })
   }
+
   decrementCartItemQuantity = itemId => {
     const {cartList} = this.state
     if (cartList[0].quantity > 1) {
       this.setState({
         cartList: cartList.map(eachItem => {
-          return {...eachItem, quantity: eachItem.quantity - 1}
+          if (eachItem.id === itemId) {
+            return {...eachItem, quantity: eachItem.quantity - 1}
+          }
+          return eachItem
         }),
       })
     } else {
       this.removeCartItem(itemId)
     }
   }
+
   removeAllCartItems = () => {
     this.setState({
-      cartList:[]
+      cartList: [],
     })
   }
+
   render() {
     const {cartList} = this.state
-
+    console.log(cartList)
     return (
       <CartContext.Provider
         value={{
