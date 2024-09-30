@@ -67,24 +67,24 @@ class App extends Component {
     })
   }
 
-  /*decrementCartItemQuantity = itemId => {
+  decrementCartItemQuantity = itemId => {
     const {cartList} = this.state
     cartList.map(eachQuantity=> {
       if(eachQuantity.quantity>1){
       return this.setState({
-        cartList: cartList.map(eachItem => {
-          if (eachItem.id === itemId) {
-            return {...eachItem, quantity: eachItem.quantity - 1}
+        cartList: cartList.map(eachCardItem => {
+          if (eachCardItem.id === itemId) {
+            return {...eachCardItem, quantity: eachCardItem.quantity - 1}
           }
-          return eachItem
+          return eachCardItem
         }),
       })}
       else {
        return this.removeCartItem(itemId)
     }
     }) 
-  }*/
-  decrementCartItemQuantity = itemId => {
+  }
+  /*decrementCartItemQuantity = itemId => {
     const {cartList} = this.state
     const updatedCartList = cartList
       .map(eachCartItem => {
@@ -100,7 +100,7 @@ class App extends Component {
       })
       .filter(item => item !== null)
     this.setState({cartList: updatedCartList})
-  }
+  }*/
 
   removeAllCartItems = () => {
     this.setState({
