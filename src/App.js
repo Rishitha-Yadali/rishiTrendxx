@@ -33,10 +33,15 @@ class App extends Component {
       }))
     } else {
       this.setState({
-        cartList: cartList.map(eachItem => ({
-          ...eachItem,
-          quantity: eachItem.quantity + product.quantity,
-        })),
+        cartList: cartList.map(eachItem => {
+          if (eachItem.id === product.id) {
+            return {
+              ...eachItem,
+              quantity: eachItem.quantity + product.quantity,
+            }
+          }
+          return eachItem
+        }),
       })
     }
   }
@@ -69,22 +74,21 @@ class App extends Component {
 
   decrementCartItemQuantity = itemId => {
     const {cartList} = this.state
-    cartList.map(eachQuantity=> {
-      if(eachQuantity.quantity>1){
-      return this.setState({
-        cartList: cartList.map(eachCardItem => {
-          if (eachCardItem.id === itemId) {
-            return {...eachCardItem, quantity: eachCardItem.quantity - 1}
-          }
-          return eachCardItem
-        }),
-      })}
-      else {
-       return this.removeCartItem(itemId)
-    }
-    }) 
+    cartList.map(eachQuantity => {
+      if (eachQuantity.quantity > 1) {
+        return this.setState({
+          cartList: cartList.map(eachCardItem => {
+            if (eachCardItem.id === itemId) {
+              return {...eachCardItem, quantity: eachCardItem.quantity - 1}
+            }
+            return eachCardItem
+          }),
+        })
+      }
+      return this.removeCartItem(itemId)
+    })
   }
-  /*decrementCartItemQuantity = itemId => {
+  /* decrementCartItemQuantity = itemId => {
     const {cartList} = this.state
     const updatedCartList = cartList
       .map(eachCartItem => {
@@ -100,7 +104,7 @@ class App extends Component {
       })
       .filter(item => item !== null)
     this.setState({cartList: updatedCartList})
-  }*/
+  } */
 
   removeAllCartItems = () => {
     this.setState({
